@@ -1,0 +1,16 @@
+{
+  "name": "mimascotasehaperdido",
+  "version": "1.0.0",
+  "description": "Web que te permite buscar a tu mascota perdida",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.13.1",
+    "express": "^4.13.0",
+    "mongodb": "^2.0.35"
+  }
+}

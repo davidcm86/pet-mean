@@ -1,0 +1,113 @@
+<div ng-controller="MascotasCtrl as mc" layout="column" ng-cloak class="md-inline-form">
+  <form name="mascotaForm">
+    <div name="tipoPerdida" ng-model="mc.nuevaMascota.tipo_perdida" value="0" class="ng-hide"></div>    
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Introduce los datos de su mascota perdida</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="img/icons/cancel.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <div layout layout-sm="column">
+      <md-input-container flex>
+        <label>Nombre mascota</label>
+        <input name="nombreMascota" ng-model="mc.nuevaMascota.nombre_mascota" size="55" required>
+      <div ng-messages="mascotaForm.nombreMascota.$error">
+        <div ng-message="required">Requerido</div>
+      </div>
+      </md-input-container>
+      <md-input-container flex>
+        <label>Tipo animal</label>
+        <md-select name="tipoMascota" ng-model="mc.nuevaMascota.tipo_mascota" size="55" required>
+          <md-option ng-repeat="animal in animales" value="{{animal.abbrev}}">
+            {{animal.abbrev}}
+          </md-option>
+        </md-select>
+        <div ng-messages="mascotaForm.tipoMascota.$error">
+          <div ng-message="required">Requerido</div>
+        </div>
+      </md-input-container>
+    </div>
+    <div layout layout-sm="column">
+      <md-input-container flex>
+        <label>Color/es mascota</label>
+        <input name="colorMascota" ng-model="mc.nuevaMascota.color_mascota" size="55" required>
+        <div ng-messages="mascotaForm.colorMascota.$error">
+          <div ng-message="required">Requerido</div>
+        </div>
+      </md-input-container>
+      <md-input-container flex>
+        <label>Edad mascota</label>
+        <input type="number" step="any" name="edadMascota" ng-model="mc.nuevaMascota.edad" size="55" min="0" max="30">
+        <div ng-messages="mascotaForm.edadMascota.$error">
+          <div ng-message="required">Requerido</div>
+        </div>
+      </md-input-container>
+      <md-input-container flex>
+        <label>Sexo mascota</label>
+        <md-select name="sexoMascota" ng-model="mc.nuevaMascota.sexo" size="55" required>
+          <md-option ng-repeat="sexo in sexos" value="{{sexo.abbrev}}">
+            {{sexo.abbrev}}
+          </md-option>
+        </md-select>
+        <div ng-messages="mascotaForm.sexoMascota.$error">
+          <div ng-message="required">Requerido</div>
+        </div>
+      </md-input-container>
+    </div>
+    <div layout layout-sm="column">
+      <md-input-container flex>
+        <label>Su email</label>
+        <input name="emailUsuario" ng-model="mc.nuevaMascota.email" size="70" type="email" required>
+      <div ng-messages="mascotaForm.emailUsuario.$error">
+        <div ng-message="required">Requerido</div>
+      </div>
+      </md-input-container>
+    </div>
+    <div layout layout-sm="column">
+      <md-input-container flex>
+        <label>País</label>
+        <md-select name="paisMascota" ng-model="mc.nuevaMascota.pais" ng-change="mc.paisSelect(pais)" size="55" required>
+          <md-option ng-repeat="pais in paises" value="{{pais.abbrev}}">
+            {{pais.abbrev}}
+          </md-option>
+        </md-select>
+        <div ng-messages="mascotaForm.paisMascota.$error">
+          <div ng-message="required">Requerido</div>
+        </div>
+      </md-input-container>        
+      <md-input-container flex>
+        <label>Ciudad</label>
+        <md-select name="ciudadMascota" ng-model="mc.nuevaMascota.ciudad" size="55" required>
+          <md-option ng-repeat="ciudad in ciudades" value="{{ciudad.abbrev}}">
+            {{ciudad.abbrev}}
+          </md-option>
+        </md-select>
+        <div ng-messages="mascotaForm.ciudadMascota.$error">
+          <div ng-message="required">Requerido</div>
+        </div>
+      </md-input-container>
+    </div>
+    <md-input-container class="md-block md-input-has-value" style="height: auto;">
+      <label for="input_31">Comentarios (lugar exacto donde se perdió,barrio o localidad,personalidad de la mascota)</label>
+      <textarea ng-model="mc.nuevaMascota.comentarios" columns="1" md-maxlength="350" rows="3" class="ng-valid md-input ng-valid-md-maxlength ng-touched ng-dirty ng-valid-parse" id="input_31" ng-trim="false" aria-multiline="true" aria-invalid="false" style="height: 87px;"></textarea><div class="md-char-counter">350</div>
+    </md-input-container>
+    <div flow-init="{singleFile:true}" flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]" class="ng-scope">
+      <div class="thumbnail ng-hide" ng-show="$flow.files.length">
+        <img class="thumbnail" flow-img="$flow.files[0]">
+      </div>
+      <div>
+        <span class="md-raised md-button md-ink-ripple" ng-show="!$flow.files.length" flow-btn="">Subir imagen mascota<input type="file" style="visibility: hidden; position: absolute;"></span>
+        <span class="md-raised md-primary md-button md-ink-ripple" ng-show="$flow.files.length" flow-btn="">Cambiar<input type="file" style="visibility: hidden; position: absolute;"></span>
+        <span class="md-raised md-warn md-button md-ink-ripple" ng-show="$flow.files.length" ng-click="$flow.cancel()">
+          Borrar
+        </span>
+      </div>
+    </div>
+    <div style="clear:both"></div>
+    <md-button style="width:35%;float:right;" ng-click="answer(mc.guardarMascotaPerdida(1))" ng-disabled="mascotaForm.$invalid" class="md-raised md-primary md-button md-ink-ripple" flex-sm="100" flex-md="100" flex-gt-md="auto">Guardar</md-button>
+  </form>
+</div>
+

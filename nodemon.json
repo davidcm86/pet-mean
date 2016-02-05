@@ -1,0 +1,4 @@
+// ignora lo que hay en esta carpeta y no lo reinicia. Ya que no nos interesa porque es HTML
+{   
+    "ignore": ["client/*"] 
+}
