@@ -6,6 +6,11 @@
                 controllerAs: 'mm',
                 templateUrl: 'mascotasPerdidas/perdidas.html',
             })
+            .when('/mascotas/perdidas/:created', {
+                controller: 'MostrarMascotasPerdidasCtrl',
+                controllerAs: 'mm',
+                templateUrl: 'mascotasPerdidas/fichaMascotaPerdida.html',
+            })
             .when('/mascotas/encontradas', {
                 controller: 'MostrarMascotasEncontradasCtrl',
                 controllerAs: 'mm',

@@ -41,5 +41,26 @@ router.route('/api/mostrarMascotasAdopcion')
             res.json(docs);
         });
     });
+// datos sobre una mascota perdiada
+router.route('/api/mostrarMascotaPerdida/:created')
+    /*.get(function (req, res, next) {
+        mascotas.getMostrarMascotaPerdida(function (err, docs) {
+            if (err) util.tratarError(err, res);
+            res.json(docs);
+        });
+    });*/
+
+    .get(function (req, res, next) {
+        var created = "1454864447306";
+        console.log('dsddddddddddddddddddd');
+        mascotas.getMostrarMascotaPerdida(created, function (err, doc) {
+            if (err) {
+                util.tratarError(err, res);
+            } else {
+                //util.test("Buscando proyecto"+ _id + "para : " + JSON.stringify(res.usuario.email) + " encontrado: " + JSON.stringify(doc));
+                res.json(doc);
+            }
+        });
+    })
 // devolvemos el enrutador
 module.exports.router = router; 

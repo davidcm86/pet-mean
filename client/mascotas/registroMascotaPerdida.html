@@ -13,14 +13,14 @@
     <div layout layout-sm="column">
       <md-input-container flex>
         <label>Nombre mascota</label>
-        <input name="nombreMascota" ng-model="mc.nuevaMascota.nombre_mascota" size="55" required>
+        <input name="nombreMascota" ng-model="mc.nuevaMascota.nombre_mascota" size="55" >
       <div ng-messages="mascotaForm.nombreMascota.$error">
         <div ng-message="required">Requerido</div>
       </div>
       </md-input-container>
       <md-input-container flex>
         <label>Tipo animal</label>
-        <md-select name="tipoMascota" ng-model="mc.nuevaMascota.tipo_mascota" size="55" required>
+        <md-select name="tipoMascota" ng-model="mc.nuevaMascota.tipo_mascota" size="55" >
           <md-option ng-repeat="animal in animales" value="{{animal.abbrev}}">
             {{animal.abbrev}}
           </md-option>
@@ -33,7 +33,7 @@
     <div layout layout-sm="column">
       <md-input-container flex>
         <label>Color/es mascota</label>
-        <input name="colorMascota" ng-model="mc.nuevaMascota.color_mascota" size="55" required>
+        <input name="colorMascota" ng-model="mc.nuevaMascota.color_mascota" size="55" >
         <div ng-messages="mascotaForm.colorMascota.$error">
           <div ng-message="required">Requerido</div>
         </div>
@@ -47,7 +47,7 @@
       </md-input-container>
       <md-input-container flex>
         <label>Sexo mascota</label>
-        <md-select name="sexoMascota" ng-model="mc.nuevaMascota.sexo" size="55" required>
+        <md-select name="sexoMascota" ng-model="mc.nuevaMascota.sexo" size="55" >
           <md-option ng-repeat="sexo in sexos" value="{{sexo.abbrev}}">
             {{sexo.abbrev}}
           </md-option>
@@ -60,7 +60,7 @@
     <div layout layout-sm="column">
       <md-input-container flex>
         <label>Su email</label>
-        <input name="emailUsuario" ng-model="mc.nuevaMascota.email" size="70" type="email" required>
+        <input name="emailUsuario" ng-model="mc.nuevaMascota.email" size="70" type="email" >
       <div ng-messages="mascotaForm.emailUsuario.$error">
         <div ng-message="required">Requerido</div>
       </div>
@@ -69,7 +69,7 @@
     <div layout layout-sm="column">
       <md-input-container flex>
         <label>País</label>
-        <md-select name="paisMascota" ng-model="mc.nuevaMascota.pais" ng-change="mc.paisSelect(pais)" size="55" required>
+        <md-select name="paisMascota" ng-model="mc.nuevaMascota.pais" ng-change="mc.paisSelect(pais)" size="55" >
           <md-option ng-repeat="pais in paises" value="{{pais.abbrev}}">
             {{pais.abbrev}}
           </md-option>
@@ -80,7 +80,7 @@
       </md-input-container>        
       <md-input-container flex>
         <label>Ciudad</label>
-        <md-select name="ciudadMascota" ng-model="mc.nuevaMascota.ciudad" size="55" required>
+        <md-select name="ciudadMascota" ng-model="mc.nuevaMascota.ciudad" size="55" >
           <md-option ng-repeat="ciudad in ciudades" value="{{ciudad.abbrev}}">
             {{ciudad.abbrev}}
           </md-option>
@@ -94,7 +94,7 @@
       <label for="input_31">Comentarios (lugar exacto donde se perdió,barrio o localidad,personalidad de la mascota)</label>
       <textarea ng-model="mc.nuevaMascota.comentarios" columns="1" md-maxlength="350" rows="3" class="ng-valid md-input ng-valid-md-maxlength ng-touched ng-dirty ng-valid-parse" id="input_31" ng-trim="false" aria-multiline="true" aria-invalid="false" style="height: 87px;"></textarea><div class="md-char-counter">350</div>
     </md-input-container>
-    <div flow-init="{singleFile:true}" flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]" class="ng-scope">
+    <div files-model="newImage.image" flow-init="{singleFile:true}" flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]" class="ng-scope">
       <div class="thumbnail ng-hide" ng-show="$flow.files.length">
         <img class="thumbnail" flow-img="$flow.files[0]">
       </div>

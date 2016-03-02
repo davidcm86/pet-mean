@@ -1,28 +1,52 @@
 <md-input-container flex>
-<label>País</label>
-<md-select name="paisMascota" ng-model="mm.mascotaPerdida.pais" ng-change="mm.paisSelect(pais)" size="55" required>
-  <md-option ng-repeat="pais in paises" value="{{pais.abbrev}}">
-    {{pais.abbrev}}
-  </md-option>
-</md-select>
+  <label>País</label>
+  <md-select name="paisMascota" ng-model="mm.mascotaPerdida.pais" ng-change="mm.paisSelect(pais)" size="55">
+    <md-option ng-repeat="pais in paises" value="{{pais.abbrev}}">
+      {{pais.abbrev}}
+    </md-option>
+  </md-select>
 </md-input-container>        
 <md-input-container flex>
-<label>Ciudad</label>
-<md-select name="ciudadMascota" ng-model="mm.mascotaPerdida.ciudad" size="55" required>
-  <md-option ng-repeat="ciudad in ciudades" value="{{ciudad.abbrev}}">
-    {{ciudad.abbrev}}
-  </md-option>
-</md-select>
+  <label>Ciudad</label>
+  <md-select name="ciudadMascota" ng-model="mm.mascotaPerdida.ciudad" size="55">
+    <md-option ng-repeat="ciudad in ciudades" value="{{ciudad.abbrev}}">
+      {{ciudad.abbrev}}
+    </md-option>
+  </md-select>
 </md-input-container>
-<section name="listaMascotasPerdidas" class="row-fluid">
-    <div ng-repeat="m in mm.mascotasPerdidas | filter:m.mascotasPerdidas | orderBy:mm.campoOrder:mm.sort">
-		<img src="img/siluetas/silueta-gato.jpg" style="float:left;margin:0px 5px 5px 5px;" alt="Gato perdido" title="Gato perdido" height="100" width="120">        
-		<p>
-        	se llama {{m.nombre_mascota | uppercase}} y  es un {{m.tipo_mascota | uppercase}}</br>
-        	sus colores son: {{m.color_mascota | uppercase}}</br>
-        	sexo: {{m.sexo | uppercase}}, edad: {{m.edad | uppercase}} años</br>
-        	país: {{m.pais | uppercase}}, ciudad: {{m.ciudad | uppercase}}</br>
-        	+ info sobre el anuncio
-        </p>
+<md-input-container flex>
+  <label>Tipo animal</label>
+  <md-select name="tipoMascota" ng-model="mm.nuevaMascota.tipo_mascota" size="55" >
+    <md-option ng-repeat="animal in animales" value="{{animal.abbrev}}">
+      {{animal.abbrev}}
+    </md-option>
+  </md-select>
+</md-input-container>
+<md-input-container flex>
+  <label>Sexo mascota</label>
+  <md-select name="sexoMascota" ng-model="mm.nuevaMascota.sexo" size="55" >
+    <md-option ng-repeat="sexo in sexos" value="{{sexo.abbrev}}">
+      {{sexo.abbrev}}
+    </md-option>
+  </md-select>
+</md-input-container>
+<section name="listaMascotasPerdidas" class="row-fluid" style="padding-left:20px;">
+    <div ng-repeat="m in mm.mascotasPerdidas | filter:{pais:mm.mascotaPerdida.pais,ciudad:mm.mascotaPerdida.ciudad,tipo_mascota:mm.nuevaMascota.tipo_mascota,sexo:mm.nuevaMascota.sexo} | orderBy:'created':true">
+      <div layout-xs="column">
+        <div flex>
+          <img src="img/siluetas/silueta-gato.jpg" style="float:left;margin:0px 5px 5px 5px;" alt="Gato perdido" title="Gato perdido" width="150" height="120">
+          <p>
+            se llama {{m.nombre_mascota | uppercase}} y  es un {{m.tipo_mascota | uppercase}}</br>
+            sus colores son: {{m.color_mascota | uppercase}}</br>
+            sexo: {{m.sexo | uppercase}}, edad: {{m.edad | uppercase}} años</br>
+            país: {{m.pais | uppercase}}, ciudad: {{m.ciudad | uppercase}}</br>
+            fecha: {{m.created | date:'dd, MMMM yyyy'}}</br>
+            <a href="/#/mascotas/perdidas/{{ m.created }}">+ info sobre el anuncio</a>
+          </p>
+          <md-divider ng-if="!$last"></md-divider>
+        </div>
+      </div>
     </div>
 </section>
+
+

@@ -1,12 +1,19 @@
 angular
   .module('mascotaPerdida')
-  .controller('MascotasCtrl', function(mascotasFactory,$scope,$mdDialog,$rootScope,Flash) {
+  .controller('MascotasCtrl', function(mascotasFactory,$scope,$mdDialog,$rootScope,$route,Flash) {
     var mp = this;
     mp.guardarMascotaPerdida = guardarMascotaPerdida;
     function guardarMascotaPerdida(tipoForm) {
       var nuevaMascota = new mascotasFactory(mp.nuevaMascota);
       nuevaMascota.tipo_registro = tipoForm;
+      console.log(nuevaMascota);
+      nuevaMascota.created = Date.now();
+      //console.log(nuevaMascota);
+      //console.log($('.thumbnail')['1'].currentSrc);
+      //var blob = new Blob([$('.thumbnail')['1'].currentSrc], {type: 'image/jpg'});
+      //saveAs(blob, "imageFileName.jpg");
       nuevaMascota.$save();
+      $route.reload();
     }
     // llamamos desde el select.pais con un ng-change para cargar el select de las ciudades
     mp.paisSelect = function(){
