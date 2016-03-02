@@ -1,0 +1,14 @@
+<div ng-controller="MostrarFichaMascotaPerdida">
+	<div class="nav-header" ng-click="doTheBack()">Volver</div>
+      <div layout="row" layout-xs="column" style="background-color:yellow;width:50%;float:left;">
+        <img src="img/siluetas/silueta-gato.jpg" style="float:left;margin:0px 5px 5px 5px;" alt="Gato perdido" title="Gato perdido" height="100" width="120">        
+        <div flex>
+          se llama {{m.nombre_mascota | uppercase}} y  es un {{m.tipo_mascota | uppercase}}</br>
+          sus colores son: {{m.color_mascota | uppercase}}</br>
+          sexo: {{m.sexo | uppercase}}, edad: {{m.edad | uppercase}} años</br>
+          país: {{m.pais | uppercase}}, ciudad: {{m.ciudad | uppercase}}</br>
+          fecha: {{m.created | date:'dd, MMMM yyyy'}}</br>
+          <a href="/#/mascotas/perdidas/{{ m._id }}">+ info sobre el anuncio</a>
+        </div>
+        <md-divider ng-if="!$last"></md-divider>
+      </div></div>
